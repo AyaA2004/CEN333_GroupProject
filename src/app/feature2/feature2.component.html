@@ -1,0 +1,138 @@
+<m-container>
+    <h2> Add Section </h2>
+
+<form class="pure-form pure-form-aligned"  #userForm="ngForm">
+    <fieldset>
+        <div class="pure-control-group">
+            <label for="course"> Course </label>
+            <select id="course" name="course" [(ngModel)]="courseSchedule.course" required>
+              <option value="" disabled selected>Select a course</option>
+              <option value="CSC202">CSC202</option>
+              <option value="CEN333">CEN333</option>
+              <option value="CEN201">CEN201</option>
+              <option value="CEN202">CEN201</option>
+              <option value="CSC203">CSC203</option>
+          </select>
+            <span class="error-message" *ngIf="userForm.submitted && userForm.controls['course'].invalid"> 
+            <small *ngIf="userForm.controls['course'].errors?.['required']"> Required </small>
+
+            </span>
+        </div>
+
+        <div class="pure-control-group">
+            <label for="instructor"> Instructor </label>
+            <input required pattern = "^Dr\.+[A-Z][a-z]+[A-Z][a-z]+$" type="text" id="instructor" [(ngModel)]="courseSchedule.instructor" name="instructor" #instructorcontrol="ngModel" placeholder="Dr. Mohamed Ghazal">
+            <span class="error-message" *ngIf="instructorcontrol.invalid && instructorcontrol.touched"> 
+                <small *ngIf="instructorcontrol.errors?.['required']"> Required </small>
+            </span>
+        </div>
+
+        <div class="pure-control-group">
+            <label for="sectionNumber"> Section </label>
+            <input required type ="number" id="sectionNumber" [(ngModel)]="courseSchedule.sectionNumber" name="section" #sectioncontrol="ngModel" placeholder="51">
+            <span class="error-message" *ngIf="sectioncontrol.invalid && sectioncontrol.touched"> 
+                <small *ngIf="sectioncontrol.errors?.['required']"> Required </small>
+            </span>
+        </div>
+
+        <div>
+          <label for="capacity">Capacity</label><br>
+          <select id="capacity" name="capacity" [(ngModel)]="courseSchedule.capacity" required>
+              <option value="" disabled selected>Select capacity</option>
+              <option value="Regular">Regular</option>
+              <option value="Large">Large</option>
+              <option value="Mega">Mega</option>
+          </select>
+      </div>
+  
+      <div>
+          <label for="timeSlot">Time Slot</label><br>
+          <input required type="number" min="1" max="14" id="timeSlot" [(ngModel)]="courseSchedule.timeSlot" name="timeSlot" #timeSlotcontrol="ngModel" placeholder="1-14">
+          <span class="error-message" *ngIf="timeSlotcontrol.invalid && timeSlotcontrol.touched"> 
+                <small *ngIf="timeSlotcontrol.errors?.['required']"> Required </small>
+                <small *ngIf="timeSlotcontrol.errors?.['min']"> Time slot cannot be below 1 </small>
+                <small *ngIf="timeSlotcontrol.errors?.['max']"> Time slot cannot be more than 14 </small>
+           </span>
+      </div>
+  
+      <div>
+          <label for="campus">Campus</label><br>
+          <select id="campus" name="campus" [(ngModel)]="courseSchedule.campus" required>
+              <option value="" disabled selected>Select campus</option>
+              <option value="Abu Dhabi">Abu Dhabi</option>
+              <option value="Al Ain">Al Ain</option>
+          </select>
+      </div>
+  
+      <div style="align-self: end;">
+         <m-aha type="success" header="Success">
+            Course Added 
+            </m-aha>
+            <m-aha type="error" header="Error">
+            Course Not Added
+            </m-aha>
+      </div>
+      
+      <div style="align-self: end;">
+          <button type="button" class= "pure-button-group12" (click)="addSection(userForm, 'remote')">Add Section to Server</button>
+          </div>
+    </fieldset>
+
+    <h1>Add Courses</h1>
+    <table class="pure-table pure-table-bordered">
+        <thead>
+            <tr>
+                <th>Course</th>
+                <th>Instructor</th>
+                <th>Section</th>
+                <th>Capacity</th>
+                <th>Time Slot</th>
+                <th>Campus</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let course of localListOfListOfCourseSchedule">
+                <td>{{course.course}}</td>
+                <td>{{course.instructor}}</td>
+                <td>{{course.sectionNumber}}</td>
+                <td>{{course.capacity}}</td>
+                <td>{{course.timeSlot}}</td>
+                <td>{{course.campus}}</td>
+                <td>
+                  <button class="pure-button button-error" (click)="removeCourse(course.sectionNumber, 'local')">
+                      X
+                  </button>
+                  </td>
+          </tr>
+        </tbody>  
+    </table>
+    <h1>Server Stored Patients</h1>
+    <table class="pure-table pure-table-bordered">
+        <thead>
+            <tr>
+                <th>Course</th>
+                <th>Instructor</th>
+                <th>Section</th>
+                <th>Capacity</th>
+                <th>Time Slot</th>
+                <th>Campus</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let course of remoteListOfCourseSchedule">
+                <td>{{course.course}}</td>
+                <td>{{course.instructor}}</td>
+                <td>{{course.sectionNumber}}</td>
+                <td>{{course.capacity}}</td>
+                <td>{{course.timeSlot}}</td>
+                <td>{{course.campus}}</td>
+                <td>
+                  <button class="pure-button button-error" (click)=" removeCourse(course.sectionNumber, 'remote')">
+                      X
+                  </button>
+                  </td>
+            </tr>
+        </tbody>
+    </table>
+</form>     
+ </m-container>

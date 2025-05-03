@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { environment } from '../../environments/environment';
+import { environment } from '../../environments/environmet';
 import { initializeApp } from 'firebase/app';
 import { getDatabase, ref, onValue, remove, set } from 'firebase/database';
+import firebase from 'firebase/compat/app';
 
 @Injectable({
   providedIn: 'root'
@@ -29,7 +30,7 @@ export class PersistenceService {
     });
  
   }
-  add(item: any, type: string){
+  addCourse(item: any, type: string){
     if(type == 'local')
     {
       this.locallist?.push(item);
@@ -42,7 +43,7 @@ export class PersistenceService {
       });
     
   }
-  remove(id: string, type: string){
+  removeCourse(id: string, type: string){
     if(type == 'local')
     {
       this.locallist?.splice(this.locallist.findIndex((item)=>{ return item.id == id}),1);

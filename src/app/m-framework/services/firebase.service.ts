@@ -34,17 +34,17 @@ export class FirebaseService {
     this.db = getDatabase(); // this is how we get a db object to use to access all the others functions
   }
   setupFirebase() {
-    const firebaseConfig = {
-      apiKey: "AIzaSyCnk5pXctfgwgN_JPjTT0Zfblwhdy21_wQ",
-      authDomain: "cen333db.firebaseapp.com",
-      databaseURL: "https://cen333db-default-rtdb.firebaseio.com",
-      projectId: "cen333db",
-      storageBucket: "cen333db.appspot.com",
-      messagingSenderId: "223377335324",
-      appId: "1:223377335324:web:039a6f8e5605e38c93ebd9",
-      measurementId: "G-DDRD83DX4Z"
-    };
-    initializeApp(firebaseConfig);
+    const Environment = {
+      apiKey: "AIzaSyCQibBzxykVG02mHjbEtmflph5-3iOT91Y",
+    authDomain: "universitycoursescheduling.firebaseapp.com",
+    databaseURL: "https://universitycoursescheduling-default-rtdb.firebaseio.com",
+    projectId: "universitycoursescheduling",
+    storageBucket: "universitycoursescheduling.firebasestorage.app",
+    messagingSenderId: "1008004085224",
+    appId: "1:1008004085224:web:4e95ee6479cecc85c3e05d",
+    measurementId: "G-WMVB4JR829"
+};
+    initializeApp(Environment);
   }
 
   // CRUD: Create, Retrieve, Update, Delete 
