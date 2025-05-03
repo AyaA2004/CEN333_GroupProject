@@ -1,0 +1,11 @@
+<m-container>
+    <m-search-button (search)="filterTermAA = $event"></m-search-button>
+    <m-table
+    [data]="listOfCoursesAA"
+    [filterTerm]="filterTermAA"
+    [showDeleteButton]="true"
+    [showMoreDetails]="true"
+    [showCaption]="true"
+    caption="Al Ain Campus Courses List">
+    </m-table>
+  </m-container>
