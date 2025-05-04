@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { environment } from '../../environments/environment';
+import { environment } from '../../environments/environmet';
+import { initializeApp } from 'firebase/app';
 import { getDatabase, ref, onValue, remove, set } from 'firebase/database';
-import firebase from 'firebase/compat/app';
 
 @Injectable({
   providedIn: 'root'
@@ -17,9 +17,9 @@ export class PersistenceService {
     this.remotelist = [];
     let myList : string | null =  localStorage.getItem("local")
     this.locallist = myList != null ?  JSON.parse(myList) : [];
-    const firebaseApp = initializeApp(environment);
-    this.db = getDatabase(firebaseApp);
-    this.itemRef = ref(this.db,'items');
+    //const firebaseApp = initializeApp(environment);
+    //this.db = getDatabase(firebaseApp);
+    //this.itemRef = ref(this.db,'items');
     this.listen();
   }
   listen(){
@@ -40,8 +40,9 @@ export class PersistenceService {
         console.log("Added to Firebase");
         alert("Item Added");
       });
-    
+
   }
+
   addSession(item: any, type: string){
     if(type == 'local')
     {
@@ -55,7 +56,7 @@ export class PersistenceService {
       });
 
   }
-  removeCourse(id: string, type: string){
+  remove(id: string, type: string){
     if(type == 'local')
     {
       this.locallist?.splice(this.locallist.findIndex((item)=>{ return item.id == id}),1);
