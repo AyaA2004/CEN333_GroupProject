@@ -15,11 +15,11 @@ export class HomeComponent {
   }
 
   viewScheduleapp() {
-    this.router.navigateByUrl('/feature1'); // Go to '/hardware' route
+    this.router.navigateByUrl('/Schedule View'); 
   }
 
   addCourseapp() {
-    this.router.navigateByUrl('/feature2'); // Go to '/software' route
+    this.router.navigateByUrl('/Add Course'); 
   }
 
 }
