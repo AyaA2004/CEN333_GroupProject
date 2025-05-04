@@ -7,6 +7,7 @@ import { AbuDhabiGrid } from './Data/AbuDhabiGrid';
 import { AlAinGrid} from './Data/AlAinGrid';
 import { MAhaComponent } from '../m-framework/components/m-aha/m-aha.component';
 import { from } from 'rxjs';
+import { set } from 'firebase/database';
 
 @Component({
   selector: 'app-feature1',
@@ -18,10 +19,14 @@ export class Feature1Component {
   title = 'University Course Scheduling';
   abuDhabiGrid: AbuDhabiGrid;
   alAinGrid: AlAinGrid;
+  successMessage: boolean = false;
+  errorMessage: boolean = false;
 
   constructor(public persistence: PersistenceService){
     this.abuDhabiGrid = new AbuDhabiGrid(0,"","","");
     this.alAinGrid = new AlAinGrid(0,"","","");
+    this.successMessage = false;
+    this.errorMessage = false;
   }
 
   resetState(){
@@ -45,6 +50,13 @@ export class Feature1Component {
     );
 
     this.persistence.addSession(abuDhabiGrid, type);
+
+    this.successMessage = true;
+    this.errorMessage = false;
+setTimeout(() => {
+      this.successMessage = false;  
+},3000);
+
     this.resetState();
     form.resetForm();
   }

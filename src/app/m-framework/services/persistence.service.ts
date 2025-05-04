@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { environment } from '../../environments/environmet';
+import {environment} from '../../environments/environment';
 import { initializeApp } from 'firebase/app';
 import { getDatabase, ref, onValue, remove, set } from 'firebase/database';
 
@@ -17,9 +17,9 @@ export class PersistenceService {
     this.remotelist = [];
     let myList : string | null =  localStorage.getItem("local")
     this.locallist = myList != null ?  JSON.parse(myList) : [];
-    //const firebaseApp = initializeApp(environment);
-    //this.db = getDatabase(firebaseApp);
-    //this.itemRef = ref(this.db,'items');
+    const firebaseApp = initializeApp(environment);
+    this.db = getDatabase(firebaseApp);
+    this.itemRef = ref(this.db,'items');
     this.listen();
   }
   listen(){

@@ -1,6 +1,6 @@
 <m-container>
     <h1> Add Session </h1>
-
+    <button (click)="goToAddCourse()">Go to Add Course</button>
     <form class ="pure-form pure-form-aligned" #userForm="ngForm">
         <fieldset>
             <div class=" pure-contol-group">
@@ -84,13 +84,17 @@
             </div>
 
             <div style="align-self: end;">
-                <m-aha type="success" header="Success">
+                <m-aha *ngIf ="successMessage" type="success" header="Success">
                    Session Added 
                    </m-aha>
-                   <m-aha type="error" header="Error">
+                   <m-aha *ngIf ="errorMessage" type="error" header="Error">
                    Session Not Added
                    </m-aha>
              </div>
+
+             <div style="align-self: end;">
+                <button type="button" class= "pure-button-group12" (click)="addSection(userForm, 'local')">Add Session </button>
+                </div>
 
              <div style="align-self: end;">
                 <button type="button" class= "pure-button-group12" (click)="addSection(userForm, 'remote')">Add Session to Server</button>
