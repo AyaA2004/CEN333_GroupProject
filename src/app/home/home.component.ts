@@ -18,8 +18,4 @@ export class HomeComponent {
     this.router.navigateByUrl('/Schedule View'); 
   }
 
-  addCourseapp() {
-    this.router.navigateByUrl('/Add Course'); 
-  }
-
 }
