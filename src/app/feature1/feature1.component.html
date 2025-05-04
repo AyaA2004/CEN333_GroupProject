@@ -106,7 +106,7 @@
 
         </fieldset>
 
-        <h1> Sessions Selected </h1>
+        <h2> Sessions Selected </h2>
     <table class="pure-table pure-table-bordered">
         <thead>
             <tr>
@@ -129,3 +129,19 @@
                 <td>{{course.time}}</td>
           </tr>
         </tbody>  
+        
+        <div>
+            <h3>Schedule Slots</h3>
+            <table border="1">
+              <tr>
+                <th>Slot</th>
+                <th>Days</th>
+                <th>Time</th>
+              </tr>
+              <tr *ngFor="let slot of slots">
+                <td>{{ slot.label }}</td>
+                <td>{{ slot.days }}</td>
+                <td>{{ slot.time }}</td>
+              </tr>
+            </table>
+          </div>

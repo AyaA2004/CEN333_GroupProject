@@ -8,6 +8,7 @@ import { AlAinGrid} from './Data/AlAinGrid';
 import { MAhaComponent } from '../m-framework/components/m-aha/m-aha.component';
 import { from } from 'rxjs';
 import { set } from 'firebase/database';
+import { SLOT_DATA, Slot } from './Data/Slot';
 
 @Component({
   selector: 'app-feature1',
@@ -21,6 +22,7 @@ export class Feature1Component {
   alAinGrid: AlAinGrid;
   successMessage: boolean = false;
   errorMessage: boolean = false;
+  slots: Slot[] = SLOT_DATA; 
 
   constructor(public persistence: PersistenceService){
     this.abuDhabiGrid = new AbuDhabiGrid(0,"","","");
