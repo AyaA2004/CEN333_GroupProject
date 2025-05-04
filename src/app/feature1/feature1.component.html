@@ -1,1 +1,123 @@
-<p>feature1 works!</p>
+<m-container>
+    <h1> Add Session </h1>
+
+    <form class ="pure-form pure-form-aligned" #userForm="ngForm">
+        <fieldset>
+            <div class=" pure-contol-group">
+                <label for="slot"> Slot </label>
+                <select id="slot" name="slot" [(ngModel)]="abuDhabiGrid.slot" required>
+                    <option value="" disabled selected> Select A Session </option>
+                    <option value = "Slot 1"> Slot 1</option>
+                    <option value = "Slot 2"> Slot 2</option>
+                    <option value = "Slot 3"> Slot 3</option>
+                    <option value = "Slot 4"> Slot 4</option>
+                    <option value = "Slot 5"> Slot 5</option>
+                    <option value = "Slot 6"> Slot 6</option>
+                    <option value = "Slot 7"> Slot 7</option>
+                    <option value = "Slot 8"> Slot 8</option>
+                    <option value = "Slot 9"> Slot 9</option>
+                    <option value = "Slot 10"> Slot 10</option>
+                    <option value = "Slot 11"> Slot 11</option>
+                    <option value = "Slot 12"> Slot 12</option>
+                    <option value = "Slot 13"> Slot 13</option>
+                    <option value = "Slot 14"> Slot 14</option>
+                </select>
+                <span class="error-message" *ngIf="userForm.submitted && userForm.controls['slot'].invalid">
+                    <small *ngIf="userForm.controls['slot'].errors?.['required']"> Required </small>
+                </span>
+            </div>
+
+            <div class=" pure-contol-group">
+                <label for="slot"> Slot </label>
+                <select id="slot" name="slot" [(ngModel)]="alAinGrid.slot" required>
+                    <option value="" disabled selected> Select A Session </option>
+                    <option value = "Slot 1"> Slot 1</option>
+                    <option value = "Slot 2"> Slot 2</option>
+                    <option value = "Slot 3"> Slot 3</option>
+                    <option value = "Slot 4"> Slot 4</option>
+                    <option value = "Slot 5"> Slot 5</option>
+                    <option value = "Slot 6"> Slot 6</option>
+                    <option value = "Slot 7"> Slot 7</option>
+                    <option value = "Slot 8"> Slot 8</option>
+                    <option value = "Slot 9"> Slot 9</option>
+                    <option value = "Slot 10"> Slot 10</option>
+                    <option value = "Slot 11"> Slot 11</option>
+                    <option value = "Slot 12"> Slot 12</option>
+                    <option value = "Slot 13"> Slot 13</option>
+                    <option value = "Slot 14"> Slot 14</option>
+                </select>
+                <span class="error-message" *ngIf="userForm.submitted && userForm.controls['slot'].invalid">
+                    <small *ngIf="userForm.controls['slot'].errors?.['required']"> Required </small>
+                </span>
+            </div>
+
+            <div class="pure-contol-group">
+                <label for="daypattern"> Day Pattern</label>
+                <input required pattern = "^(MW|TR)-(1[0-4]|[1-9])$" type="text" id="daypattern" [(ngModel)]="abuDhabiGrid.daypattern" name="daypattern" #daypatterncontrol="ngModel" placeholder="MW or TR">
+                <span class="error-message" *ngIf="daypatterncontrol.invalid && daypatterncontrol.touched">
+                    <small *ngIf="daypatterncontrol.errors?.['required']"> Required </small>
+                </span>
+            </div>
+
+            <div class="pure-contol-group">
+                <label for="daypattern"> Day Pattern</label>
+                <input required pattern = "^(MW|TR)-(1[0-4]|[1-9])$" type="text" id="daypattern" [(ngModel)]="alAinGrid.daypattern" name="daypattern" #daypatterncontrol="ngModel" placeholder="MW or TR">
+                <span class="error-message" *ngIf="daypatterncontrol.invalid && daypatterncontrol.touched">
+                    <small *ngIf="daypatterncontrol.errors?.['required']"> Required </small>
+                </span>
+            </div>
+            
+            <div class="pure-contol-group">
+                <label for="time"> Time </label>
+                <input required pattern = "^([01][0-9]|2[0-3]):[0-5][0-9]$" type="text" id="time" [(ngModel)]="abuDhabiGrid.time" name="time" #timecontrol="ngModel" placeholder="14:30">
+                <span class="error-message" *ngIf="timecontrol.invalid && timecontrol.touched">
+                    <small *ngIf="timecontrol.errors?.['required']"> Required </small>
+                </span>
+            </div>
+
+            <div class="pure-contol-group">
+                <label for="time"> Time </label>
+                <input required pattern = "^([01][0-9]|2[0-3]):[0-5][0-9]$" type="text" id="time" [(ngModel)]="alAinGrid.time" name="time" #timecontrol="ngModel" placeholder="14:30">
+                <span class="error-message" *ngIf="timecontrol.invalid && timecontrol.touched">
+                    <small *ngIf="timecontrol.errors?.['required']"> Required </small>
+                </span>
+            </div>
+
+            <div style="align-self: end;">
+                <m-aha type="success" header="Success">
+                   Session Added 
+                   </m-aha>
+                   <m-aha type="error" header="Error">
+                   Session Not Added
+                   </m-aha>
+             </div>
+
+             <div style="align-self: end;">
+                <button type="button" class= "pure-button-group12" (click)="addSection(userForm, 'remote')">Add Session to Server</button>
+                </div>
+
+        </fieldset>
+
+        <h1> Sessions Selected </h1>
+    <table class="pure-table pure-table-bordered">
+        <thead>
+            <tr>
+                <th> Slot </th>
+                <th> Day Pattern </th>
+                <th> Time </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let course of localListOfListOfAbuDhabiGrid">
+                <td>{{abuDhabiGrid.slot}}</td>
+                <td>{{abuDhabiGrid.daypattern}}</td>
+                <td>{{abuDhabiGrid.time}}</td>
+          </tr>
+        </tbody>  
+        <tbody>
+            <tr *ngFor="let course of localListOfListOfAlAinGrid">
+                <td>{{abuDhabiGrid.slot}}</td>
+                <td>{{abuDhabiGrid.daypattern}}</td>
+                <td>{{abuDhabiGrid.time}}</td>
+          </tr>
+        </tbody>  

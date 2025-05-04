@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { environment } from '../../environments/environmet';
-import { initializeApp } from 'firebase/app';
+import { environment } from '../../environments/environment';
 import { getDatabase, ref, onValue, remove, set } from 'firebase/database';
 import firebase from 'firebase/compat/app';
 
@@ -42,6 +41,19 @@ export class PersistenceService {
         alert("Item Added");
       });
     
+  }
+  addSession(item: any, type: string){
+    if(type == 'local')
+    {
+      this.locallist?.push(item);
+      localStorage.setItem("local",JSON.stringify(this.locallist));
+    }
+    else if (type == 'remote')
+      set(ref(this.db,`items/${item.id}`), item).then(()=>{
+        console.log("Added to Firebase");
+        alert("Item Added");
+      });
+
   }
   removeCourse(id: string, type: string){
     if(type == 'local')
